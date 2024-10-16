@@ -2,7 +2,7 @@ from .Window_Tk import WindowTk
 from .components.titleLabel.TitleLabel_Controller import TitleLabelController
 
 class WindowController:
-  windowTk: WindowTk
+  window: WindowTk
   titleLabelController: TitleLabelController
 
   def __init__(self):
@@ -11,15 +11,15 @@ class WindowController:
     self.open_window()
 
   def create_window(self):
-    self.windowTk = WindowTk(self)
+    self.window = WindowTk()
 
   def init_components(self):
-    self.titleLabelController = TitleLabelController(self.WindowTk)
+    self.titleLabelController = TitleLabelController(self.window)
 
   def open_window(self):
-    self.windowTk.mainloop()
+    self.window.mainloop()
 
   def close_window(self):
-    if self.windowTk is not None:
-      self.windowTk.destroy()
-      self.windowTk = None
+    if self.window is not None:
+      self.window.destroy()
+      self.window = None

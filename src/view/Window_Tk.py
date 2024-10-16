@@ -1,12 +1,9 @@
 import tkinter as tk
-from .Window_Controller import WindowController
 
 class WindowTk(tk.Tk):
-  windowController: WindowController
 
-  def __init__(self, controller: WindowController):
+  def __init__(self):
     super().__init__()
-    self.windowController = controller
     self.init_config()
 
   def init_config(self):

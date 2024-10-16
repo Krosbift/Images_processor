@@ -1,16 +1,14 @@
-from ...Window_Tk import WindowTk
 from .TitleLabel_Component import TitleLabelComponent
 
 class TitleLabelController:
-  windowTk: WindowTk
   titleLabelComponent: TitleLabelComponent
 
-  def __init__(self, window: WindowTk):
-    self.windowTk = window
+  def __init__(self, window):
+    self.window = window
     self.create_component()
 
   def create_component(self):
-    self.titleLabelComponent = TitleLabelComponent()
+    self.titleLabelComponent = TitleLabelComponent(self.window)
 
   def init_components(self):
     pass

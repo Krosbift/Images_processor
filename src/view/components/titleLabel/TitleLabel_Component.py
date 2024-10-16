@@ -1,12 +1,10 @@
 import tkinter as tk
-from .TitleLabel_Controller import TitleLabelController
 
 class TitleLabelComponent(tk.Label):
-  titleLabelController: TitleLabelController
-
-  def __init__(self):
+  def __init__(self, window):
+    self.window = window
     self.init_config()
 
   def init_config(self):
-    super().__init__(self, text="Visor de imágenes", font=("Helvetica", 16))
+    super().__init__(self.window, text="Visor de imágenes", font=("Helvetica", 16))
     self.pack(side="top", pady=10)
