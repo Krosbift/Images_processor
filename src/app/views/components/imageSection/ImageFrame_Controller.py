@@ -1,6 +1,7 @@
 from .ImageFrame_Component import ImageFrameComponent
 from .services.Image_Service import ImageService
 from .components.imageLabel.ImageLabel_Controller import ImageLabelController
+from .components.imageOperations.ImageOperationFrame_Controller import ImageOperationFrameController
 
 class ImageFrameController:
 
@@ -17,6 +18,7 @@ class ImageFrameController:
 
   def init_components(self):
     self.add_component("ImageLabelController", ImageLabelController(self))
+    self.add_component("ImageOperationFrameController", ImageOperationFrameController(self))
 
   def add_component(self, key, controller):
     self.childrenControllers[key] = controller
