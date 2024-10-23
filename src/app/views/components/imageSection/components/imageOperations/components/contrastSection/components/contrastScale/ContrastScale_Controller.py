@@ -1,6 +1,6 @@
-from .BrightnessScale_Component import BrightnessScaleComponent
+from .ContrastScale_Component import ContrastScaleComponent
 
-class BrightnessScaleController:
+class ContrastScaleController:
 
   def __init__(self, parent):
     self.parent_controller = parent
@@ -10,7 +10,7 @@ class BrightnessScaleController:
     self.init_components()
 
   def create_component(self):
-    self.component = BrightnessScaleComponent(self, self.parent_controller.component)
+    self.component = ContrastScaleComponent(self, self.parent_controller.component)
 
   def init_components(self):
     pass

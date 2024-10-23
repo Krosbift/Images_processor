@@ -1,6 +1,6 @@
 from tkinter import ttk
 
-class BrightnessSpinBoxComponent(ttk.Spinbox):
+class ContrastSpinBoxComponent(ttk.Spinbox):
   
   def __init__(self, controller, section):
     self.controller = controller
