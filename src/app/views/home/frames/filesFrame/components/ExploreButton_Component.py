@@ -1,4 +1,4 @@
-from .....shared.components.ButtonStandard_Component import ButtonStandardComponent
+from .....shared.components.buttonStandard.ButtonStandard_Component import ButtonStandardComponent
 
 class ExploreButtonComponent(ButtonStandardComponent):
   

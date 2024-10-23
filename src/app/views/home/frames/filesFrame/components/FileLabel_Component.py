@@ -8,11 +8,7 @@ class FileLabelComponent(ttk.Label):
     self._bind_events()
 
   def _configure_label(self):
-    super().__init__(
-      self.controller.component,
-      text="Archivo de imagen: ",
-      style="FileLabel.TLabel"
-    )
+    super().__init__(self.controller.component, text="Archivo de imagen: ", style="FileLabel.TLabel")
     self.place(relx=0.1, rely=0.5, anchor="e")
 
   def _configure_styles(self):

@@ -1,24 +1,22 @@
-from .ContrastFrame_Component import ContrastFrameComponent
-from .components.contrastTextLabel.ContrastTextLabel_Controller import ContrastTextLabelController
-from .components.contrastSpinbox.ContrastSpinbox_Controller import ContrastSpinBoxController
-from .components.contrastScale.ContrastScale_Controller import ContrastScaleController
+from ........shared.components.labelScaleSpinboxFrame.LabelScaleSpinboxFrame_Component import LabelScaleSpinboxFrameComponent
+from ........shared.components.labelScaleSpinboxFrame.components.Scale_Component import ScaleComponent
+from ........shared.components.labelScaleSpinboxFrame.components.Spinbox_Component import SpinBoxComponent
+from ........shared.components.labelScaleSpinboxFrame.components.TextLabel_Component import TextLabelComponent
 
 class ContrastFrameController:
 
   def __init__(self, parent):
     self.parent_controller = parent
-    self.component = None
-    self.childrenControllers = {}
     self.create_component()
     self.init_components()
 
   def create_component(self):
-    self.component = ContrastFrameComponent(self, self.parent_controller.component)
+    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.1)
 
   def init_components(self):
-    self.add_component("ContrastTextLabelController", ContrastTextLabelController(self))
-    self.add_component("ContrastSpinBoxController", ContrastSpinBoxController(self))
-    self.add_component("ContrastScaleController", ContrastScaleController(self))
+    self.contrastTextLabel = TextLabelComponent(self, text="Contraste: ", style_name="ContrastLabel.TLabel")
+    self.contrastSpinbox = SpinBoxComponent(self)
+    self.contrastScale = ScaleComponent(self, command=self.on_scale_move)
 
-  def add_component(self, key, controller):
-    self.childrenControllers[key] = controller
+  def on_scale_move(self, value):
+    self.contrastSpinbox.set_value(value)

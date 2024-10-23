@@ -1,24 +1,22 @@
-from .BrightnessFrame_Component import BrightnessFrameComponent
-from .components.brightnessTextLabel.BrightnessTextLabel_Controller import BrightnessTextLabelController
-from .components.brightnessSpinbox.BrightnessSpinBox_Controller import BrightnessSpinBoxController
-from .components.brightnessScale.BrightnessScale_Controller import BrightnessScaleController
+from ........shared.components.labelScaleSpinboxFrame.LabelScaleSpinboxFrame_Component import LabelScaleSpinboxFrameComponent
+from ........shared.components.labelScaleSpinboxFrame.components.Scale_Component import ScaleComponent
+from ........shared.components.labelScaleSpinboxFrame.components.Spinbox_Component import SpinBoxComponent
+from ........shared.components.labelScaleSpinboxFrame.components.TextLabel_Component import TextLabelComponent
 
 class BrightnessFrameController:
 
   def __init__(self, parent):
     self.parent_controller = parent
-    self.component = None
-    self.childrenControllers = {}
     self.create_component()
     self.init_components()
 
   def create_component(self):
-    self.component = BrightnessFrameComponent(self, self.parent_controller.component)
+    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.005)
 
   def init_components(self):
-    self.add_component('BrightnessTextLabelController', BrightnessTextLabelController(self))
-    self.add_component('BrightnessSpinBoxController', BrightnessSpinBoxController(self))
-    self.add_component('BrightnessScaleController', BrightnessScaleController(self))
+    self.brightnessTextLabel = TextLabelComponent(self, text="Brillo: ", style_name="BrightnessLabel.TLabel")
+    self.brightnessSpinbox = SpinBoxComponent(self)
+    self.brightnessScale = ScaleComponent(self, command=self.on_scale_move)
 
-  def add_component(self, key, controller):
-    self.childrenControllers[key] = controller
+  def on_scale_move(self, value):
+    self.brightnessSpinbox.set_value(value)
