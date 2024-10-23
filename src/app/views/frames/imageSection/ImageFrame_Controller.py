@@ -24,7 +24,7 @@ class ImageFrameController:
     self.childrenControllers[key] = controller
 
   def set_image(self):
-    route = self.parent_controller.childrenControllers["FilesSectionController"].childrenControllers["FileEntryController"].path_route.get()
+    route = self.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get()
     width = self.component.winfo_width() * 0.7
     height = self.component.winfo_height()
     self.childrenControllers["ImageLabelController"].image = self.service.get_photo_image(route, width, height)
