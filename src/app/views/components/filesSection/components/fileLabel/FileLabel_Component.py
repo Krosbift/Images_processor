@@ -10,7 +10,7 @@ class FileLabelComponent(tk.Label):
 
   def init_config(self):
     super().__init__(self.section, text="Archivo de imagen: ", fg="#000000", bg="#FFFFFF", font=("Helvetica", 12))
-    self.place(relx=0.10, rely=0.5, anchor="e")
+    self.place(relx=0.1, rely=0.5, anchor="e")
 
   def on_resize(self, event):
     self.config(font=("Helvetica", min(12, int(event.height / 2))))

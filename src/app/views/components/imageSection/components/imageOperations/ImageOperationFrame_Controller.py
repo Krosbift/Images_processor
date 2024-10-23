@@ -1,4 +1,5 @@
 from .ImageOperationFrame_Component import ImageOperationFrameComponent
+from .components.brightnessSection.BrightnessFrame_Controller import BrightnessFrameController
 
 class ImageOperationFrameController:
 
@@ -13,7 +14,7 @@ class ImageOperationFrameController:
     self.component = ImageOperationFrameComponent(self, self.parent_controller.component)
 
   def init_components(self):
-    pass
+    self.add_component('BrightnessFrameController', BrightnessFrameController(self))
 
   def add_component(self, key, controller):
     self.childrenControllers[key] = controller
