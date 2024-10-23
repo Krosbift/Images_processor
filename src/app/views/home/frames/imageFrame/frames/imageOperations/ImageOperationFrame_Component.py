@@ -9,7 +9,7 @@ class ImageOperationFrameComponent(tk.Frame):
     self.section.bind("<Configure>", self.on_resize)
 
   def init_config(self):
-    super().__init__(self.section, bg=self.section.cget('bg'))
+    super().__init__(self.section, bg="#FFFFFF")
     self.place(relx=0.7, y=0, relwidth=0.3, relheight=1, anchor="nw")
 
   def on_resize(self, _):

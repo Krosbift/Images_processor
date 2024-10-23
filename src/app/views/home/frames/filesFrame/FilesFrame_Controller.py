@@ -14,7 +14,7 @@ class FilesFrameController:
     self.init_components()
 
   def create_component(self):
-    self.component = FilesFrameComponent(self, self.parent_controller.windowTk)
+    self.component = FilesFrameComponent(self)
 
   def init_components(self):
     self.loadButtonComponent = LoadButtonComponent(self)
