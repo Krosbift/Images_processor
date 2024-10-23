@@ -1,8 +1,10 @@
+import tkinter as tk
 from .FileEntry_Component import FileEntryComponent
 
 class FileEntryController:
 
   def __init__(self, parent) -> None:
+    self.path_route = tk.StringVar()
     self.parent_controller = parent
     self.component = None
     self.childrenControllers = {}
@@ -18,5 +20,3 @@ class FileEntryController:
   def add_component(self, key, controller):
     self.childrenControllers[key] = controller
 
-  def destroy_component(self):
-    pass

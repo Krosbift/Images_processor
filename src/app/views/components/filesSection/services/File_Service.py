@@ -15,3 +15,4 @@ class FileService:
 
     if entry_var.get():
       return entry_var.get()
+

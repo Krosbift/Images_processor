@@ -14,5 +14,3 @@ class TitleLabelController:
   def init_components(self):
     pass
 
-  def destroy_component(self):
-    pass

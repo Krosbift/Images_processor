@@ -9,7 +9,7 @@ class LoadButtonComponent(tk.Button):
     self.section.bind("<Configure>", self.on_resize)
 
   def init_config(self):
-    super().__init__(self.section, text="Cargar", font=("Helvetica", 10), bg="#E5E5E5", fg="#111111", bd=2, relief="solid", borderwidth=1, cursor="hand2")
+    super().__init__(self.section, text="Cargar", font=("Helvetica", 10), bg="#E5E5E5", fg="#111111", bd=2, relief="solid", borderwidth=1, cursor="hand2", command=self.controller.parent_controller.set_image_path)
     self.place(relx=0.9, rely=0.5, relwidth=0.09, relheight=0.5, anchor="w")
 
   def on_resize(self, _):

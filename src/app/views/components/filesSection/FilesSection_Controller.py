@@ -27,8 +27,8 @@ class FilesSectionController:
   def add_component(self, key, controller):
     self.childrenControllers[key] = controller
 
-  def destroy_component(self):
-    pass
-
   def get_file_path(self):
-    self.childrenControllers["FileEntryController"].component.path_route.set(self.service.select_file())
+    self.childrenControllers["FileEntryController"].path_route.set(self.service.select_file())
+
+  def set_image_path(self):
+    return self.parent_controller.childrenControllers["ImageFrameController"].set_image()

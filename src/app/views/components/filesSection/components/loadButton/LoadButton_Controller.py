@@ -18,5 +18,3 @@ class LoadButtonController:
   def add_component(self, key, controller):
     self.childrenControllers[key] = controller
 
-  def destroy_component(self):
-    pass
