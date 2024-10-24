@@ -32,6 +32,7 @@ class ButtonStandardComponent(ttk.Button):
     self._configure_button()
     self._bind_events()
 
+
   def _configure_button(self):
     """
     Configures the button component with the specified properties.
@@ -41,6 +42,7 @@ class ButtonStandardComponent(ttk.Button):
     """
     super().__init__(self.controller.component, text=self.text, style=self.style, cursor="hand2", command=self.command)
     self.place(relx=self.relx, rely=0.5, relwidth=0.09, relheight=0.6, anchor="w")
+
 
   def _configure_styles(self):
     """
@@ -53,6 +55,7 @@ class ButtonStandardComponent(ttk.Button):
     style.configure(self.style, font=("Helvetica", 10), background="#E5E5E5", foreground="#111111", borderwidth=1)
     style.map(self.style, background=[('active', '#D5D5D5')], foreground=[('active', '#000000')])
 
+
   def _bind_events(self):
     """
     Binds the <Configure> event to the _on_resize method for the component.
@@ -61,6 +64,7 @@ class ButtonStandardComponent(ttk.Button):
     _on_resize method whenever the component is resized.
     """
     self.controller.component.bind("<Configure>", self._on_resize)
+
 
   def _on_resize(self, _):
     """
