@@ -19,7 +19,6 @@ class LabelScaleSpinboxFrameComponent(ttk.Frame):
       Handles the resize event to adjust the frame's placement.
   """
 
-
   def __init__(self, controller, relx, rely):
     self.controller = controller
     self.relx = relx

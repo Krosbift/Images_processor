@@ -2,6 +2,7 @@ from .ImageOperationFrame_Component import ImageOperationFrameComponent
 from .frames.brightnessFrame.BrightnessFrame_Controller import BrightnessFrameController
 from .frames.contrastFrame.ContrastFrame_Controller import ContrastFrameController
 from .frames.rotationFrame.RotationFrame_Controller import RotationFrameController
+from .frames.zonesFrame.ZonesFrame_Controller import ZonesFrameController
 
 
 class ImageOperationFrameController:
@@ -23,5 +24,6 @@ class ImageOperationFrameController:
         "BrightnessFrameController": BrightnessFrameController(self),
         "ContrastFrameController": ContrastFrameController(self),
         "RotationFrameController": RotationFrameController(self),
+        "ZonesFrameController": ZonesFrameController(self)
       }
 

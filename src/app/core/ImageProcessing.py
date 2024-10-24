@@ -91,3 +91,60 @@ class ImageProcessing:
     rotated_image = Image.fromarray(rotated_image.astype(np.uint8))
     
     return rotated_image
+
+
+  def highlight_light_zones(self, image, threshold=200):
+    """
+    Highlight the light zones of an image.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    threshold (int): The threshold value to separate light zones.
+    
+    Returns:
+    PIL.Image.Image: The image with light zones highlighted.
+    """
+    
+    # Convert PIL Image to NumPy array
+    image = np.array(image)
+    
+    # Create mask for light zones
+    light_mask = image > threshold
+    
+    # Highlight light zones
+    highlighted_image = np.zeros_like(image)
+    highlighted_image[light_mask] = image[light_mask]
+    
+    # Convert back to PIL Image
+    highlighted_image = Image.fromarray(highlighted_image)
+    
+    return highlighted_image
+
+
+  def highlight_dark_zones(self, image, threshold=50):
+    """
+    Highlight the dark zones of an image.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    threshold (int): The threshold value to separate dark zones.
+    
+    Returns:
+    PIL.Image.Image: The image with dark zones highlighted.
+    """
+    
+    # Convert PIL Image to NumPy array
+    image = np.array(image)
+    
+    # Create mask for dark zones
+    dark_mask = image < threshold
+    
+    # Highlight dark zones
+    highlighted_image = np.zeros_like(image)
+    highlighted_image[dark_mask] = image[dark_mask]
+    
+    # Convert back to PIL Image
+    highlighted_image = Image.fromarray(highlighted_image)
+    
+    return highlighted_image
+

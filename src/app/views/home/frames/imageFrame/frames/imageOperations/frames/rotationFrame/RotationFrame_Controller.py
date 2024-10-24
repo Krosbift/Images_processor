@@ -7,9 +7,9 @@ from ........shared.components.labelScaleSpinboxFrame.components.TextLabel_Compo
 
 class RotationFrameController:
 
-  def __init__(self, controller) -> None:
+  def __init__(self, parent) -> None:
     self.resize_timer = None
-    self.parent_controller = controller
+    self.parent_controller = parent
     self.create_component()
     self.init_components()
 

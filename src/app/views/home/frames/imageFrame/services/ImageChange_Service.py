@@ -11,7 +11,7 @@ class ImageChangeService:
     self.brightness = 1
     self.contrast = 1
     self.rotation = 0
-    self.zones = None
+    self.zones = 0
     self.type = None
     self.channelRGB = None
     self.channelCNY = None
@@ -26,6 +26,10 @@ class ImageChangeService:
       image = self.imageProcessing.adjust_brightness(image, self.brightness)
       image = self.imageProcessing.adjust_contrast(image, self.contrast)
       image = self.imageProcessing.rotate_image(image, self.rotation)
+      image = (
+          image if self.zones == 0 else self.imageProcessing.highlight_light_zones(image) 
+          if self.zones == 1 else self.imageProcessing.highlight_dark_zones(image)
+        )
       return image
 
 
@@ -47,3 +51,8 @@ class ImageChangeService:
   def set_rotation(self, value):
     self.rotation = value
     return self.apply_filter()
+  
+  def set_zones(self, value):
+    self.zones = value
+    return self.apply_filter()
+
