@@ -28,11 +28,20 @@ class ImageLabelComponent(tk.Label):
     if self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get() != "":
       self.update_image()
 
-  def update_image(self):
-    self.image = self.controller.service.get_photo_image(
-        self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get(),
+  def update_image(self, image=None):
+    if image is None:
+      self.image = self.controller.service.get_image_route(
+          self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get(),
+          self.controller.component.winfo_width() * 0.7,
+          self.controller.component.winfo_height()
+        )
+      self.config(image=self.image)
+      return self.update()
+    
+    self.image = self.controller.service.get_image(
+        image,
         self.controller.component.winfo_width() * 0.7,
         self.controller.component.winfo_height()
       )
     self.config(image=self.image)
-    self.update()
+    return self.update()

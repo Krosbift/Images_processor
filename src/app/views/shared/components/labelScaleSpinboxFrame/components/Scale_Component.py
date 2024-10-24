@@ -8,9 +8,10 @@ class ScaleComponent(ttk.Scale):
     self._configure_styles()
     self._configure_scale()
     self._bind_events()
+    self.set(0)
 
   def _configure_scale(self):
-    super().__init__(self.controller.component, orient="horizontal", length=100, from_=0, to=1, command=self.command)
+    super().__init__(self.controller.component, orient="horizontal", length=100, from_=0, to=2, command=self.command)
     self.place(relx=0.1, rely=0.5, anchor="e")
 
   def _configure_styles(self):
@@ -23,3 +24,6 @@ class ScaleComponent(ttk.Scale):
   def _on_resize(self, event):
     self.config(length=event.width * 0.15)
     self.place_configure(relx=0.97, rely=0.5, relheight=0.6, anchor="e")
+
+  def set_value(self, value):
+    self.set(f"{float(value):.2f}")

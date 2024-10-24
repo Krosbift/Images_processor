@@ -15,8 +15,11 @@ class ContrastFrameController:
 
   def init_components(self):
     self.contrastTextLabel = TextLabelComponent(self, text="Contraste: ", style_name="ContrastLabel.TLabel")
-    self.contrastSpinbox = SpinBoxComponent(self)
+    self.contrastSpinbox = SpinBoxComponent(self, command=self.on_spinbox_change)
     self.contrastScale = ScaleComponent(self, command=self.on_scale_move)
 
   def on_scale_move(self, value):
     self.contrastSpinbox.set_value(value)
+
+  def on_spinbox_change(self, value):
+    self.contrastScale.set_value(value)

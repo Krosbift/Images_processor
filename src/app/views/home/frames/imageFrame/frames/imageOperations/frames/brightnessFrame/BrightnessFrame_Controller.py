@@ -15,8 +15,11 @@ class BrightnessFrameController:
 
   def init_components(self):
     self.brightnessTextLabel = TextLabelComponent(self, text="Brillo: ", style_name="BrightnessLabel.TLabel")
-    self.brightnessSpinbox = SpinBoxComponent(self)
+    self.brightnessSpinbox = SpinBoxComponent(self, command=self.on_spinbox_change)
     self.brightnessScale = ScaleComponent(self, command=self.on_scale_move)
 
   def on_scale_move(self, value):
     self.brightnessSpinbox.set_value(value)
+
+  def on_spinbox_change(self, value):
+    self.brightnessScale.set_value(value)
