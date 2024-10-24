@@ -12,9 +12,13 @@ class ImageChangeService:
     self.contrast = 1
     self.rotation = 0
     self.zones = 0
+    self.channelR = 1
+    self.channelG = 1
+    self.channelB = 1
+    self.channelC = 1
+    self.channelN = 1
+    self.channelY = 1
     self.type = None
-    self.channelRGB = None
-    self.channelCNY = None
     self.transparence = None
     self.binarity = None
     self.negative = None
@@ -30,6 +34,8 @@ class ImageChangeService:
           image if self.zones == 0 else self.imageProcessing.highlight_light_zones(image) 
           if self.zones == 1 else self.imageProcessing.highlight_dark_zones(image)
         )
+      image = self.imageProcessing.apply_rgb_filter(image, self.channelR, self.channelG, self.channelB)
+      image = self.imageProcessing.apply_cmy_filter(image, self.channelC, self.channelN, self.channelY)
       return image
 
 
@@ -52,7 +58,21 @@ class ImageChangeService:
     self.rotation = value
     return self.apply_filter()
   
+
   def set_zones(self, value):
     self.zones = value
     return self.apply_filter()
 
+
+  def set_rgb_filter(self, valueR, valueG, valueB):
+    self.channelR = valueR
+    self.channelG = valueG
+    self.channelB = valueB
+    return self.apply_filter()
+  
+
+  def set_cmy_filter(self, valueC, valueM, valueY):
+    self.channelC = valueC
+    self.channelN = valueM
+    self.channelY = valueY
+    return self.apply_filter()

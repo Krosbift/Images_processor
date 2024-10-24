@@ -15,7 +15,7 @@ class RotationFrameController:
 
   
   def create_component(self):
-    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.2)
+    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.16)
 
 
   def init_components(self):

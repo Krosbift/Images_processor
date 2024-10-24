@@ -148,3 +148,92 @@ class ImageProcessing:
     
     return highlighted_image
 
+
+  def apply_rgb_filter(self, image, show_red, show_green, show_blue):
+    """
+    Apply an RGB filter to an image by showing or hiding specific channels.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    show_red (bool): Whether to show the red channel.
+    show_green (bool): Whether to show the green channel.
+    show_blue (bool): Whether to show the blue channel.
+    
+    Returns:
+    PIL.Image.Image: The RGB-filtered image.
+    """
+    image = np.array(image)
+    
+    red_mask = np.zeros_like(image)
+    green_mask = np.zeros_like(image)
+    blue_mask = np.zeros_like(image)
+    
+    if show_red:
+        red_mask[:, :, 0] = image[:, :, 0]
+    if show_green:
+        green_mask[:, :, 1] = image[:, :, 1]
+    if show_blue:
+        blue_mask[:, :, 2] = image[:, :, 2]
+    
+    filtered_rgb_image = red_mask + green_mask + blue_mask
+    
+    if show_red and not show_green and not show_blue:
+        filtered_rgb_image[:, :, 1] = 0
+        filtered_rgb_image[:, :, 2] = 0
+    elif show_green and not show_red and not show_blue:
+        filtered_rgb_image[:, :, 0] = 0
+        filtered_rgb_image[:, :, 2] = 0
+    elif show_blue and not show_red and not show_green:
+        filtered_rgb_image[:, :, 0] = 0
+        filtered_rgb_image[:, :, 1] = 0
+    
+    filtered_image = Image.fromarray(filtered_rgb_image.astype(np.uint8))
+    
+    return filtered_image
+
+
+  def apply_cmy_filter(self, image, show_cyan, show_magenta, show_yellow):
+    """
+    Apply a CMY filter to an image by showing or hiding specific channels.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    show_cyan (bool): Whether to show the cyan channel.
+    show_magenta (bool): Whether to show the magenta channel.
+    show_yellow (bool): Whether to show the yellow channel.
+    
+    Returns:
+    PIL.Image.Image: The CMY-filtered image.
+    """
+    image = np.array(image)
+    
+    cmy_image = 255 - image
+    
+    cyan_mask = np.zeros_like(cmy_image)
+    magenta_mask = np.zeros_like(cmy_image)
+    yellow_mask = np.zeros_like(cmy_image)
+    
+    if show_cyan:
+        cyan_mask[:, :, 0] = cmy_image[:, :, 0]
+    if show_magenta:
+        magenta_mask[:, :, 1] = cmy_image[:, :, 1]
+    if show_yellow:
+        yellow_mask[:, :, 2] = cmy_image[:, :, 2]
+    
+    filtered_cmy_image = cyan_mask + magenta_mask + yellow_mask
+    
+    if show_cyan and not show_magenta and not show_yellow:
+        filtered_cmy_image[:, :, 1] = 0
+        filtered_cmy_image[:, :, 2] = 0
+    elif show_magenta and not show_cyan and not show_yellow:
+        filtered_cmy_image[:, :, 0] = 0
+        filtered_cmy_image[:, :, 2] = 0
+    elif show_yellow and not show_cyan and not show_magenta:
+        filtered_cmy_image[:, :, 0] = 0
+        filtered_cmy_image[:, :, 1] = 0
+    
+    rgb_image = 255 - filtered_cmy_image
+    
+    filtered_image = Image.fromarray(rgb_image.astype(np.uint8))
+    
+    return filtered_image

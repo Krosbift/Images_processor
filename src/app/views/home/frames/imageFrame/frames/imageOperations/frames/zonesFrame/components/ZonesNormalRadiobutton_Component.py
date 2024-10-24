@@ -11,7 +11,7 @@ class ZonesNormalRadiobuttonComponent(ttk.Radiobutton):
 
   def _configure_radiobutton(self):
     super().__init__(self.controller.component, text="Z.normales", variable=self.controller.value, value=0, command=self.controller.toggle_state)
-    self.place(relx=0.25, rely=0.5)
+    self.place(relx=0.25, rely=0.02)
 
 
   def _bind_events(self):
@@ -19,5 +19,5 @@ class ZonesNormalRadiobuttonComponent(ttk.Radiobutton):
 
 
   def _on_resize(self, _):
-    self.place(relx=0.25, rely=0.5)
+    self.place(relx=0.25, rely=0.02)
 

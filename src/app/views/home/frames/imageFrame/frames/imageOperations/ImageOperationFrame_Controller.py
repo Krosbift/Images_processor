@@ -3,6 +3,8 @@ from .frames.brightnessFrame.BrightnessFrame_Controller import BrightnessFrameCo
 from .frames.contrastFrame.ContrastFrame_Controller import ContrastFrameController
 from .frames.rotationFrame.RotationFrame_Controller import RotationFrameController
 from .frames.zonesFrame.ZonesFrame_Controller import ZonesFrameController
+from .frames.channelRGBFrame.ChannelRGBFrame_Controller import ChannelRGBFrameController
+from .frames.channelCMYFrame.ChannelCMYFrame_Controller import ChannelCMYFrameController
 
 
 class ImageOperationFrameController:
@@ -24,6 +26,8 @@ class ImageOperationFrameController:
         "BrightnessFrameController": BrightnessFrameController(self),
         "ContrastFrameController": ContrastFrameController(self),
         "RotationFrameController": RotationFrameController(self),
-        "ZonesFrameController": ZonesFrameController(self)
+        "ZonesFrameController": ZonesFrameController(self),
+        "ChannelRGBFrameController": ChannelRGBFrameController(self),
+        "ChannelCMYFrameController": ChannelCMYFrameController(self),
       }
 

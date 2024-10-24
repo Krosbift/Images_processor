@@ -15,7 +15,7 @@ class BrightnessFrameController:
 
 
   def create_component(self):
-    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.005)
+    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0)
 
 
   def init_components(self):

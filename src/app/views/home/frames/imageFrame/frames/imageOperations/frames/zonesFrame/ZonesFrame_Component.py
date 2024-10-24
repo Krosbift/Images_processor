@@ -43,7 +43,7 @@ class ZonesFrameComponent(ttk.Frame):
     """
     super().__init__(self.controller.parent_controller.component)
     self.configure(style="Rotation.TFrame")
-    self.place(relx=0.5, rely=0.3, relwidth=2, relheight=0.1, anchor="n")
+    self.place(relx=0.5, rely=0.24, relwidth=2, relheight=0.04, anchor="n")
 
   
   def _bind_events(self):
@@ -66,5 +66,5 @@ class ZonesFrameComponent(ttk.Frame):
     Parameters:
     _ (Event): The resize event object (unused).
     """
-    self.place(relx=0.5, rely=0.3, relwidth=2, relheight=0.1, anchor="n")
+    self.place(relx=0.5, rely=0.24, relwidth=2, relheight=0.04, anchor="n")
 

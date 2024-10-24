@@ -43,7 +43,7 @@ class LabelScaleSpinboxFrameComponent(ttk.Frame):
     """
     super().__init__(self.controller.parent_controller.component)
     self.configure(style="Custom.TFrame")
-    self.place(relx=self.relx, rely=self.rely, relwidth=2, relheight=0.1, anchor="n")
+    self.place(relx=self.relx, rely=self.rely, relwidth=2, relheight=0.08, anchor="n")
 
 
   def _bind_events(self):
@@ -70,5 +70,5 @@ class LabelScaleSpinboxFrameComponent(ttk.Frame):
     Args:
       _: The event object (not used).
     """
-    self.place_configure(relx=self.relx, rely=self.rely, relwidth=2, relheight=0.1, anchor="n")
+    self.place_configure(relx=self.relx, rely=self.rely, relwidth=2, relheight=0.08, anchor="n")
 
