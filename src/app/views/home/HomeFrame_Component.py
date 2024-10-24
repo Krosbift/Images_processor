@@ -4,13 +4,17 @@ class HomeFrameComponent(ttk.Frame):
 
   def __init__(self, controller):
     self.controller = controller
+    self._configure_style()
     self._configure_frame()
     self._bind_events()
 
   def _configure_frame(self):
-    super().__init__(self.controller.parent_controller.windowTk)
-    self.configure(style='TFrame')
+    super().__init__(self.controller.parent_controller.windowTk, style='White.TFrame')
     self.pack(fill='both', expand=True)
+
+  def _configure_style(self):
+    style = ttk.Style()
+    style.configure('White.TFrame', background='white')
 
   def _bind_events(self):
     self.controller.parent_controller.windowTk.bind("<Configure>", self._on_resize)

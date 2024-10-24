@@ -1,6 +1,6 @@
 from .ImageOperationFrame_Component import ImageOperationFrameComponent
-from .frames.brightnessSection.BrightnessFrame_Controller import BrightnessFrameController
-from .frames.contrastSection.ContrastFrame_Controller import ContrastFrameController
+from .frames.brightnessFrame.BrightnessFrame_Controller import BrightnessFrameController
+from .frames.contrastFrame.ContrastFrame_Controller import ContrastFrameController
 
 class ImageOperationFrameController:
 
