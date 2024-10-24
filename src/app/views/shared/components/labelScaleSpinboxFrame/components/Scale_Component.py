@@ -8,7 +8,7 @@ class ScaleComponent(ttk.Scale):
     self._configure_styles()
     self._configure_scale()
     self._bind_events()
-    self.set(0)
+    self.set(1)
 
   def _configure_scale(self):
     super().__init__(self.controller.component, orient="horizontal", length=100, from_=0, to=2, command=self.command)

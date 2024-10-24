@@ -1,21 +1,26 @@
 import tkinter as tk
 import threading
 
+
 class ImageLabelComponent(tk.Label):
-  
+
   def __init__(self, controller):
-    self.image = None
+    self.original_image = None
+    self.temporal_image = None
+    self.resize_timer = None
     self.controller = controller
     self._configure_label()
     self._bind_events()
-    self.resize_timer = None
+
 
   def _configure_label(self):
     super().__init__(self.controller.component, highlightthickness=1)
     self.place(x=0, y=0, relwidth=0.7, relheight=1, anchor="nw")
 
+
   def _bind_events(self):
     self.controller.parent_controller.component.bind("<Configure>", self._on_resize)
+
 
   def _on_resize(self, _):
     self.place_configure(x=0, y=0, relwidth=0.7, relheight=1, anchor="nw")
@@ -24,24 +29,35 @@ class ImageLabelComponent(tk.Label):
     self.resize_timer = threading.Timer(0.2, self._resize_image)
     self.resize_timer.start()
 
+
   def _resize_image(self):
     if self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get() != "":
       self.update_image()
 
-  def update_image(self, image=None):
-    if image is None:
-      self.image = self.controller.service.get_image_route(
-          self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get(),
-          self.controller.component.winfo_width() * 0.7,
-          self.controller.component.winfo_height()
-        )
-      self.config(image=self.image)
-      return self.update()
-    
-    self.image = self.controller.service.get_image(
-        image,
+
+  def load_image(self):
+    self.original_image = self.controller.service.get_load_image(
+        self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get(),
         self.controller.component.winfo_width() * 0.7,
         self.controller.component.winfo_height()
       )
-    self.config(image=self.image)
+    self.temporal_image = self.original_image
+    self.config(image=self.temporal_image)
+    self.set_image_service(self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get())
+    self.controller.init_childControllers()
     return self.update()
+
+
+  def update_image(self, image=None):
+    self.temporal_image = self.controller.service.get_new_image(
+        image if image is not None else self.controller.imageChangeService.apply_filter(),
+        self.controller.component.winfo_width() * 0.7,
+        self.controller.component.winfo_height()
+      )
+    self.config(image=self.temporal_image)
+    return self.update()
+
+
+  def set_image_service(self, route):
+    return self.controller.imageChangeService.set_image(route)
+

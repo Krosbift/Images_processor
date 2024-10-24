@@ -2,10 +2,12 @@ from PIL import Image, ImageTk
 
 class ImageService:
 
+
   def __init__(self) -> None:
     pass
 
-  def get_image_route(self, route, width, height):
+
+  def get_load_image(self, route, width, height):
     """
     Opens an image from the specified file path, resizes it to the given width and height, 
     and returns a PhotoImage object.
@@ -22,7 +24,8 @@ class ImageService:
     image = image.resize((int(width), int(height)), Image.LANCZOS)
     return ImageTk.PhotoImage(image)
   
-  def get_image(self, image, width, height):
+
+  def get_new_image(self, image, width, height):
     """
     Resizes the given image to the specified width and height, and converts it to a PhotoImage object.
 
@@ -36,3 +39,4 @@ class ImageService:
     """
     image = image.resize((int(width), int(height)), Image.LANCZOS)
     return ImageTk.PhotoImage(image)
+
