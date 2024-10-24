@@ -32,3 +32,34 @@ class ImageProcessing:
     adjusted_image = Image.fromarray(adjusted_image)
     
     return adjusted_image
+
+
+  def adjust_contrast(self, image, factor):
+    """
+    Adjust the contrast of an image.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    factor (float): The factor by which to adjust the contrast. 
+      Values > 1 will increase contrast, values < 1 will decrease it.
+    
+    Returns:
+    PIL.Image.Image: The contrast-adjusted image.
+    """
+    
+    # Convert PIL Image to NumPy array
+    image = np.array(image)
+    
+    # Ensure the factor is a float
+    factor = float(factor)
+    
+    # Calculate the mean of the image
+    mean = np.mean(image)
+    
+    # Adjust contrast
+    adjusted_image = np.clip((image - mean) * factor + mean, 0, 255).astype(np.uint8)
+    
+    # Convert back to PIL Image
+    adjusted_image = Image.fromarray(adjusted_image)
+    
+    return adjusted_image

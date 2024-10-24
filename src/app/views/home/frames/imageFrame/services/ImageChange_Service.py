@@ -9,7 +9,7 @@ class ImageChangeService:
     self.imageProcessing = ImageProcessing()
     self.image = None
     self.brightness = 1
-    self.contrast = None
+    self.contrast = 1
     self.zones = None
     self.type = None
     self.channelRGB = None
@@ -24,6 +24,7 @@ class ImageChangeService:
     if self.image is not None:
       image = self.image
       image = self.imageProcessing.adjust_brightness(image, self.brightness)
+      image = self.imageProcessing.adjust_contrast(image, self.contrast)
       return image
 
 
@@ -36,3 +37,7 @@ class ImageChangeService:
     self.brightness = value
     return self.apply_filter()
 
+
+  def set_contrast(self, value):
+    self.contrast = value
+    return self.apply_filter()

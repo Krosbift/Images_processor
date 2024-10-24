@@ -33,23 +33,58 @@ class ImageFrameController:
 
 
   def create_component(self):
+    """
+    Creates an instance of ImageFrameComponent and assigns it to the component attribute.
+
+    This method initializes the ImageFrameComponent with the current instance of the controller.
+    """
     self.component = ImageFrameComponent(self)
 
 
   def init_components(self):
+    """
+    Initializes the components for the ImageFrame_Controller.
+
+    This method sets up the imageLabelComponent by creating an instance of 
+    ImageLabelComponent and assigning it to the imageLabelComponent attribute.
+    """
     self.imageLabelComponent = ImageLabelComponent(self)
 
 
   def init_childControllers(self):
+    """
+    Initializes child controllers for the ImageFrame_Controller.
+
+    This method sets up the `childrenControllers` dictionary with instances
+    of child controllers. Currently, it initializes the 
+    `ImageOperationFrameController` with the current instance of 
+    `ImageFrame_Controller`.
+
+    Attributes:
+      childrenControllers (dict): A dictionary containing instances of 
+      child controllers.
+    """
     self.childrenControllers = {
         "ImageOperationFrameController": ImageOperationFrameController(self)
     }
 
 
   def set_image(self):
+    """
+    Loads an image into the image label component.
+
+    This method calls the `load_image` method of the `imageLabelComponent`
+    to load and display an image.
+    """
     self.imageLabelComponent.load_image()
 
 
   def applied_image_operation(self, image):
+    """
+    Applies an image operation and updates the image label component.
+
+    Args:
+      image: The image to be processed and displayed.
+    """
     self.imageLabelComponent.update_image(image)
 
