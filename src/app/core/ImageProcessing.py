@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+from scipy.ndimage import rotate
 
 class ImageProcessing:
 
@@ -63,3 +64,30 @@ class ImageProcessing:
     adjusted_image = Image.fromarray(adjusted_image)
     
     return adjusted_image
+  
+
+  def rotate_image(self, image, angle):
+    """
+    Rotate the image by a specified angle.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    angle (float): The angle by which to rotate the image, in degrees.
+    
+    Returns:
+    PIL.Image.Image: The rotated image.
+    """
+    
+    # Convert PIL Image to NumPy array
+    image = np.array(image)
+    
+    # Ensure the angle is a float
+    angle = float(angle)
+    
+    # Rotate the image
+    rotated_image = rotate(image, angle, reshape=True, mode='nearest')
+    
+    # Convert back to PIL Image
+    rotated_image = Image.fromarray(rotated_image.astype(np.uint8))
+    
+    return rotated_image

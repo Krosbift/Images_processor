@@ -10,11 +10,11 @@ class ImageChangeService:
     self.image = None
     self.brightness = 1
     self.contrast = 1
+    self.rotation = 0
     self.zones = None
     self.type = None
     self.channelRGB = None
     self.channelCNY = None
-    self.rotation = None
     self.transparence = None
     self.binarity = None
     self.negative = None
@@ -25,6 +25,7 @@ class ImageChangeService:
       image = self.image
       image = self.imageProcessing.adjust_brightness(image, self.brightness)
       image = self.imageProcessing.adjust_contrast(image, self.contrast)
+      image = self.imageProcessing.rotate_image(image, self.rotation)
       return image
 
 
@@ -40,4 +41,9 @@ class ImageChangeService:
 
   def set_contrast(self, value):
     self.contrast = value
+    return self.apply_filter()
+  
+
+  def set_rotation(self, value):
+    self.rotation = value
     return self.apply_filter()

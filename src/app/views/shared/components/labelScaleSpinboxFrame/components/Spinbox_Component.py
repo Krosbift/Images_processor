@@ -25,13 +25,17 @@ class SpinBoxComponent(ttk.Spinbox):
   """
 
 
-  def __init__(self, controller, command):
+  def __init__(self, controller, command, initial_value, min_value, max_value, increment, notation):
     self.controller = controller
     self.command = command
+    self.min_value = min_value
+    self.max_value = max_value
+    self.increment = increment
+    self.notation = notation
     self._configure_spinbox()
     self._configure_styles()
     self._bind_events()
-    self.set(1)
+    self.set(initial_value)
 
 
   def _configure_spinbox(self):
@@ -49,7 +53,7 @@ class SpinBoxComponent(ttk.Spinbox):
     Returns:
     None
     """
-    super().__init__(self.controller.component, from_=0, to=2, increment=0.01, style="TSpinbox", state="readonly", command=self._on_spinbox_change)
+    super().__init__(self.controller.component, from_=self.min_value, to=self.max_value, increment=self.increment, style="TSpinbox", state="readonly", command=self._on_spinbox_change)
     self.place(relx=0.68, rely=0.5, relwidth=0.13, relheight=0.6, anchor="w")
 
 
@@ -112,13 +116,17 @@ class SpinBoxComponent(ttk.Spinbox):
     """
     self.command(self.get())
 
-
   def set_value(self, value):
     """
-    Sets the value of the spinbox to the specified value formatted to two decimal places.
+    Sets the value of the spinbox to the specified value formatted according to the notation.
 
     Args:
       value (float or int): The value to set in the spinbox.
     """
-    self.set(f"{float(value):.2f}")
+    format_map = {
+        "float_2_decimals": lambda v: f"{float(v):.2f}",
+        "integer_with_degree": lambda v: f"{int(float(v))}°"
+    }
 
+    formatted_value = format_map.get(self.notation, lambda v: str(v))(value)
+    self.set(formatted_value)

@@ -20,8 +20,8 @@ class ContrastFrameController:
 
   def init_components(self):
     self.contrastTextLabel = TextLabelComponent(self, text="Contraste: ", style_name="ContrastLabel.TLabel")
-    self.contrastSpinbox = SpinBoxComponent(self, command=self.on_spinbox_change)
-    self.contrastScale = ScaleComponent(self, command=self.on_scale_move)
+    self.contrastSpinbox = SpinBoxComponent(self, command=self.on_spinbox_change, initial_value=1, min_value=0, max_value=2, increment=0.01, notation="float_2_decimals")
+    self.contrastScale = ScaleComponent(self, command=self.on_scale_move, initial_value=1, min_value=0, max_value=2)
 
 
   def on_scale_move(self, value):

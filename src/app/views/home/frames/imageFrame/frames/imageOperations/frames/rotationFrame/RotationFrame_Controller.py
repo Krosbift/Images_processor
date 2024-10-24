@@ -5,43 +5,43 @@ from ........shared.components.labelScaleSpinboxFrame.components.Spinbox_Compone
 from ........shared.components.labelScaleSpinboxFrame.components.TextLabel_Component import TextLabelComponent
 
 
-class BrightnessFrameController:
+class RotationFrameController:
 
-  def __init__(self, parent):
+  def __init__(self, controller) -> None:
     self.resize_timer = None
-    self.parent_controller = parent
+    self.parent_controller = controller
     self.create_component()
     self.init_components()
 
-
+  
   def create_component(self):
-    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.005)
+    self.component = LabelScaleSpinboxFrameComponent(self, relx=0.01, rely=0.2)
 
 
   def init_components(self):
-    self.brightnessTextLabel = TextLabelComponent(self, text="Brillo: ", style_name="BrightnessLabel.TLabel")
-    self.brightnessSpinbox = SpinBoxComponent(self, command=self.on_spinbox_change, initial_value=1, min_value=0, max_value=2, increment=0.01, notation="float_2_decimals")
-    self.brightnessScale = ScaleComponent(self, command=self.on_scale_move, initial_value=1, min_value=0, max_value=2)
+    self.rotationTextLabel = TextLabelComponent(self, text="Rotación: ", style_name="RotationLabel.TLabel")
+    self.rotationSpinbox = SpinBoxComponent(self, command=self.on_spinbox_change, initial_value=0, min_value=0, max_value=360, increment=1, notation="integer_with_degree")
+    self.rotationScale = ScaleComponent(self, command=self.on_scale_move, initial_value=0, min_value=0, max_value=360)
 
 
   def on_scale_move(self, value):
-    self.brightnessSpinbox.set_value(value)
+    self.rotationSpinbox.set_value(value)
     if self.resize_timer is not None:
       self.resize_timer.cancel()
-    self.resize_timer = threading.Timer(0.2, self.apply_image_brightness, [value])
+    self.resize_timer = threading.Timer(0.2, self.apply_image_rotation, [value])
     self.resize_timer.start()
 
 
   def on_spinbox_change(self, value):
-    self.brightnessScale.set_value(value)
+    self.rotationScale.set_value(value)
     if self.resize_timer is not None:
       self.resize_timer.cancel()
-    self.resize_timer = threading.Timer(0.2, self.apply_image_brightness, [value])
+    self.resize_timer = threading.Timer(0.2, self.apply_image_rotation, [value])
     self.resize_timer.start()
 
 
-  def apply_image_brightness(self, value):
+  def apply_image_rotation(self, value):
     if self.parent_controller.parent_controller.imageLabelComponent.original_image is not None:
-      new_image = self.parent_controller.parent_controller.imageChangeService.set_brightness(value)
+      new_image = self.parent_controller.parent_controller.imageChangeService.set_rotation(value)
       self.parent_controller.parent_controller.applied_image_operation(new_image)
 

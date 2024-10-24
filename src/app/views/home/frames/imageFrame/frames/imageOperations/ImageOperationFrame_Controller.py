@@ -1,6 +1,7 @@
 from .ImageOperationFrame_Component import ImageOperationFrameComponent
 from .frames.brightnessFrame.BrightnessFrame_Controller import BrightnessFrameController
 from .frames.contrastFrame.ContrastFrame_Controller import ContrastFrameController
+from .frames.rotationFrame.RotationFrame_Controller import RotationFrameController
 
 
 class ImageOperationFrameController:
@@ -20,6 +21,7 @@ class ImageOperationFrameController:
   def init_components(self):
     self.childrenControllers = {
         "BrightnessFrameController": BrightnessFrameController(self),
-        "ContrastFrameController": ContrastFrameController(self)
+        "ContrastFrameController": ContrastFrameController(self),
+        "RotationFrameController": RotationFrameController(self),
       }
 

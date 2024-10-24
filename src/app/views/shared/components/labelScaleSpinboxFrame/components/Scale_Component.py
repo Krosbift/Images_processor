@@ -23,13 +23,15 @@ class ScaleComponent(ttk.Scale):
   """
 
 
-  def __init__(self, controller, command):
+  def __init__(self, controller, command, initial_value, min_value, max_value):
     self.controller = controller
     self.command = command
+    self.min_value = min_value
+    self.max_value = max_value
     self._configure_styles()
     self._configure_scale()
     self._bind_events()
-    self.set(1)
+    self.set(initial_value)
 
 
   def _configure_scale(self):
@@ -45,7 +47,7 @@ class ScaleComponent(ttk.Scale):
     Returns:
     None
     """
-    super().__init__(self.controller.component, orient="horizontal", length=100, from_=0, to=2, command=self.command)
+    super().__init__(self.controller.component, orient="horizontal", length=100, from_=self.min_value, to=self.max_value, command=self.command)
     self.place(relx=0.1, rely=0.5, anchor="e")
 
 
