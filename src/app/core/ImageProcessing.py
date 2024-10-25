@@ -273,3 +273,48 @@ class ImageProcessing:
     
     return Image.fromarray(zoomed_image)
 
+
+  def binarize_image(self, image, threshold=128):
+    """
+    Binarize the image by applying a threshold to convert it to black and white.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    threshold (int): The threshold value to binarize the image.
+    
+    Returns:
+    PIL.Image.Image: The binarized image.
+    """
+    # Convert PIL Image to NumPy array
+    image = np.array(image)
+    
+    # Apply threshold to binarize the image
+    binarized_image = (image > threshold) * 255
+    
+    # Convert back to PIL Image
+    binarized_image = Image.fromarray(binarized_image.astype(np.uint8))
+    
+    return binarized_image
+
+
+  def negative_image(self, image):
+    """
+    Get the negative of an image.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    
+    Returns:
+    PIL.Image.Image: The negative image.
+    """
+    # Convert PIL Image to NumPy array
+    image = np.array(image)
+    
+    # Calculate the negative of the image
+    negative_image = 255 - image
+    
+    # Convert back to PIL Image
+    negative_image = Image.fromarray(negative_image.astype(np.uint8))
+    
+    return negative_image
+

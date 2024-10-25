@@ -7,7 +7,7 @@ from .components.ZoomSpinbox_component import ZoomSpinboxComponent
 
 class ZoomFrameController:
 
-  def __init__(self, parent) -> None:
+  def __init__(self, parent):
     self.resize_timer = None
     self.parent_controller = parent
     self.create_component()

@@ -4,7 +4,7 @@ from ......core.ImageProcessing import ImageProcessing
 
 class ImageChangeService:
 
-  def __init__(self) -> None:
+  def __init__(self):
     self.imageProcessing = ImageProcessing()
     self.image = None
     self.brightness = 1
@@ -20,10 +20,9 @@ class ImageChangeService:
     self.zoomX = 0
     self.zoomY = 0
     self.zoomFactor = 1
-    self.type = None
+    self.binarity = False
+    self.negative = False
     self.transparence = None
-    self.binarity = None
-    self.negative = None
 
 
   def apply_filter(self):
@@ -39,6 +38,8 @@ class ImageChangeService:
       image = self.imageProcessing.apply_rgb_filter(image, self.channelR, self.channelG, self.channelB)
       image = self.imageProcessing.apply_cmy_filter(image, self.channelC, self.channelN, self.channelY)
       image = self.imageProcessing.zoom_image(image, self.zoomX, self.zoomY, self.zoomFactor)
+      image = self.imageProcessing.binarize_image(image) if self.binarity else image
+      image = self.imageProcessing.negative_image(image) if self.negative else image
       return image
 
 
@@ -92,4 +93,14 @@ class ImageChangeService:
     if self.image is not None:
       return self.image.size
     return 0, 0
+
+
+  def set_binarization(self, value):
+    self.binarity = True if value == "Binarization" else False
+    return self.apply_filter()
+  
+
+  def set_negative(self, value):
+    self.negative = True if value == "Negative" else False
+    return self.apply_filter()
 

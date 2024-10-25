@@ -37,3 +37,4 @@ class ZonesFrameController:
     if self.parent_controller.parent_controller.imageLabelComponent.original_image is not None:
       new_image = self.parent_controller.parent_controller.imageChangeService.set_zones(value)
       self.parent_controller.parent_controller.applied_image_operation(new_image)
+
