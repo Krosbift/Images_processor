@@ -5,6 +5,26 @@ from .components.BinarizationCombox_Component import BinarizationComboxComponent
 
 
 class BinarizationFrameController:
+  """
+  BinarizationFrameController is responsible for managing the binarization frame component and its operations.
+  Attributes:
+    resize_timer (threading.Timer): Timer to handle resize events.
+    parent_controller (object): Reference to the parent controller.
+    component (BinarizationFrameComponent): Instance of the binarization frame component.
+    binarization_label_component (BinarizationLabelComponent): Instance of the binarization label component.
+    binarization_combobox_component (BinarizationComboxComponent): Instance of the binarization combobox component.
+  Methods:
+    __init__(parent):
+      Initializes the BinarizationFrameController with the given parent controller.
+    create_component():
+      Creates the binarization frame component.
+    init_components():
+      Initializes the binarization label and combobox components.
+    change_value():
+      Changes the binarization value and updates the image after a delay.
+    update_binarization_image():
+      Updates the binarization image using the selected binarization method.
+  """
 
   def __init__(self, parent):
     self.resize_timer = None

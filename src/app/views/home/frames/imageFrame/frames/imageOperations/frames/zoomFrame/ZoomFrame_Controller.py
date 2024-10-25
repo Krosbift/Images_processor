@@ -6,6 +6,31 @@ from .components.ZoomSpinbox_component import ZoomSpinboxComponent
 
 
 class ZoomFrameController:
+  """
+  Controller class for managing the zoom frame functionality in the application.
+  Attributes:
+    resize_timer (threading.Timer): Timer to handle delayed zoom updates.
+    parent_controller (object): Reference to the parent controller.
+    component (ZoomFrameComponent): The main component for the zoom frame.
+    zoom_label_component (ZoomLabelComponent): Label component for zoom.
+    zoom_label_x_component (ZoomRefLabelComponent): Label component for X value.
+    zoom_label_y_component (ZoomRefLabelComponent): Label component for Y value.
+    zoom_label_factor_component (ZoomRefLabelComponent): Label component for zoom factor.
+    zoom_spinbox_x_component (ZoomSpinboxComponent): Spinbox component for X value.
+    zoom_spinbox_y_component (ZoomSpinboxComponent): Spinbox component for Y value.
+    zoom_spinbox_factor_component (ZoomSpinboxComponent): Spinbox component for zoom factor.
+  Methods:
+    __init__(parent):
+      Initializes the ZoomFrameController with a parent controller.
+    create_component():
+      Creates the main zoom frame component.
+    init_components():
+      Initializes all the sub-components for the zoom frame.
+    new_values():
+      Handles the event when new values are set in the spinboxes.
+    update_zoom_image(x, y, factor):
+      Updates the zoomed image based on the provided x, y coordinates and zoom factor.
+  """
 
   def __init__(self, parent):
     self.resize_timer = None

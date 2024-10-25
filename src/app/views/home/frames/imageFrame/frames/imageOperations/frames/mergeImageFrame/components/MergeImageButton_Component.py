@@ -16,8 +16,8 @@ class MergeImageButtonComponent(ttk.Button):
     This method initializes the button with the given text, style, and command,
     and places it at the specified relative position within its parent container.
     """
-    super().__init__(self.controller.component, text="Merge", style="Merge.TButton", cursor="hand2", command=None)
-    self.place(relx=0.17, rely=0.8, height=25, anchor="n")
+    super().__init__(self.controller.component, text="Merge Image", style="Merge.TButton", cursor="hand2", command=self.controller.toggle_state)
+    self.place(relx=0.34, rely=0.4, height=25, anchor="n")
 
 
   def _configure_styles(self):
@@ -49,5 +49,5 @@ class MergeImageButtonComponent(ttk.Button):
     Parameters:
     _ (Event): The resize event object (unused).
     """
-    self.place_configure(relx=0.17, rely=0.8, height=25, anchor="n")
+    self.place_configure(relx=0.34, rely=0.4, height=25, anchor="n")
 

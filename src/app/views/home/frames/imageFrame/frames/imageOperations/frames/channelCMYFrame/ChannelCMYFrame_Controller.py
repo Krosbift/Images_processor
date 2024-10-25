@@ -5,6 +5,28 @@ from ........shared.components.labelThreeCheckboxFrame.components.Checkbox_Compo
 
 
 class ChannelCMYFrameController:
+  """
+  ChannelCMYFrameController is responsible for managing the CMY channel operations in the image processing application.
+  Attributes:
+    resize_timer (threading.Timer): Timer to handle resize events.
+    parent_controller (object): Reference to the parent controller.
+    component (LabelThreeCheckboxFrameComponent): Component for the CMY channel frame.
+    text_label (TextLabelComponent): Label for the CMY channel.
+    cyan_checkbox (CheckboxbuttonComponent): Checkbox for the Cyan channel.
+    magenta_checkbox (CheckboxbuttonComponent): Checkbox for the Magenta channel.
+    yellow_checkbox (CheckboxbuttonComponent): Checkbox for the Yellow channel.
+  Methods:
+    __init__(parent):
+      Initializes the ChannelCMYFrameController with the given parent controller.
+    create_component():
+      Creates the main component for the CMY channel frame.
+    init_components():
+      Initializes the components (label and checkboxes) for the CMY channel frame.
+    detect_change():
+      Detects changes in the checkbox states and starts a timer to apply the CMY filter.
+    apply_image_channelCMY():
+      Applies the CMY filter to the image based on the checkbox states and updates the parent controller.
+  """
 
   def __init__(self, parent) -> None:
     self.resize_timer = None

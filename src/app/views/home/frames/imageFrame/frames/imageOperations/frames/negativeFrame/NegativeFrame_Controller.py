@@ -5,6 +5,28 @@ from .components.NegativeCombox_Component import NegativeComboxComponent
 
 
 class NegativeFrameController:
+  """
+  NegativeFrameController is responsible for managing the negative image processing operations
+  within the application. It initializes components, handles user interactions, and updates the
+  negative image accordingly.
+  Attributes:
+    resize_timer (threading.Timer): Timer to handle delayed operations for resizing.
+    parent_controller (object): Reference to the parent controller.
+    component (NegativeFrameComponent): Component for negative frame operations.
+    negative_label_component (NegativeLabelComponent): Component for the negative label.
+    negative_combobox_component (NegativeComboxComponent): Component for the negative combobox.
+  Methods:
+    __init__(parent):
+      Initializes the NegativeFrameController with the given parent controller.
+    create_component():
+      Creates the NegativeFrameComponent.
+    init_components():
+      Initializes the negative label and combobox components.
+    change_value():
+      Handles the change in value and updates the negative image after a delay.
+    update_negative_image():
+      Updates the negative image using the selected value from the combobox component.
+  """
 
   def __init__(self, parent):
     self.resize_timer = None

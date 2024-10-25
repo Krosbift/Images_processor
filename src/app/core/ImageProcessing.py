@@ -318,3 +318,41 @@ class ImageProcessing:
     
     return negative_image
 
+
+  def merge_images(self, image1, image2, transparencia):
+    """
+    Combina dos imágenes aplicando un factor de transparencia a la segunda imagen.
+    
+    Parameters:
+    image1 (PIL.Image.Image): La primera imagen.
+    image2 (PIL.Image.Image): La segunda imagen.
+    transparencia (float): El factor de transparencia para la segunda imagen (0 a 1).
+    
+    Returns:
+    PIL.Image.Image: La imagen combinada.
+    """
+    # Convertir las imágenes a arrays de NumPy
+    image1_np = np.array(image1)
+    
+    # Redimensionar la segunda imagen para que tenga las mismas dimensiones que la primera
+    image2_resized = image2.resize(image1.size, Image.LANCZOS)
+    image2_np = np.array(image2_resized)
+    
+    # Asegurarse de que ambas imágenes tengan el mismo número de canales
+    if image1_np.shape[2] != image2_np.shape[2]:
+        if image1_np.shape[2] == 4:
+            image1_np = image1_np[:, :, :3]
+        if image2_np.shape[2] == 4:
+            image2_np = image2_np[:, :, :3]
+    
+    # Aplicar el factor de transparencia a la segunda imagen
+    image2_np = image2_np * (1 - transparencia)
+    
+    # Combinar las dos imágenes
+    imagen_combinada_np = np.clip(image1_np * transparencia + image2_np, 0, 255).astype(np.uint8)
+    
+    # Convertir la imagen combinada de vuelta a un objeto PIL.Image
+    imagen_combinada = Image.fromarray(imagen_combinada_np)
+    
+    return imagen_combinada
+

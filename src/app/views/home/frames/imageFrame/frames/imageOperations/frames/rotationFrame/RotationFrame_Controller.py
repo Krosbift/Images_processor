@@ -6,6 +6,26 @@ from ........shared.components.labelScaleSpinboxFrame.components.TextLabel_Compo
 
 
 class RotationFrameController:
+  """
+  Controller class for handling the rotation frame operations in the image processing application.
+  Attributes:
+    parent_controller (object): The parent controller object.
+    resize_timer (threading.Timer): Timer for handling delayed image rotation application.
+    component (LabelScaleSpinboxFrameComponent): Component for the rotation frame.
+  Methods:
+    __init__(parent):
+      Initializes the RotationFrameController with the given parent controller.
+    create_component():
+      Creates the component for the rotation frame.
+    init_components():
+      Initializes the components for rotation control, including labels, spinbox, and scale.
+    on_scale_move(value):
+      Handles the event when the rotation scale is moved. Updates the spinbox value and applies the rotation after a delay.
+    on_spinbox_change(value):
+      Handles the event when the rotation spinbox value is changed. Updates the scale value and applies the rotation after a delay.
+    apply_image_rotation(value):
+      Applies the image rotation using the parent controller's image change service and updates the displayed image.
+  """
 
   def __init__(self, parent) -> None:
     self.resize_timer = None

@@ -1,7 +1,20 @@
 from tkinter import ttk
 
 class ShowHistogramButtonComponent(ttk.Button):
-
+  """
+  ShowHistogramButtonComponent is a custom ttk.Button component designed to display a histogram button.
+  This class is responsible for configuring the button's styles, properties, and event bindings. It inherits from ttk.Button and provides additional methods to set up the button's appearance and behavior.
+  Methods:
+    __init__(controller):
+      Initializes the ShowHistogramButtonComponent with the given controller.
+    _configure_button():
+      Configures the button component with the specified properties, including text, style, command, and placement.
+    _configure_styles():
+      Configures the styles for the button component using the ttk.Style class, setting font, background color, foreground color, and border width.
+    _bind_events():
+      Binds the <Configure> event to the _on_resize method for the component to handle resizing events.
+    _on_resize(_):
+  """
   def __init__(self, controller):
     self.controller = controller
     self._configure_styles()
@@ -17,7 +30,7 @@ class ShowHistogramButtonComponent(ttk.Button):
     and places it at the specified relative position within its parent container.
     """
     super().__init__(self.controller.component, text="Histograma", style="Histogram.TButton", cursor="hand2", command=self.controller.view_histogram)
-    self.place(relx=0.17, rely=0.8, height=25, anchor="n")
+    self.place(relx=0.17, rely=0.9, height=25, anchor="n")
 
 
   def _configure_styles(self):
@@ -49,5 +62,5 @@ class ShowHistogramButtonComponent(ttk.Button):
     Parameters:
     _ (Event): The resize event object (unused).
     """
-    self.place_configure(relx=0.17, rely=0.8, height=25, anchor="n")
+    self.place_configure(relx=0.17, rely=0.9, height=25, anchor="n")
 

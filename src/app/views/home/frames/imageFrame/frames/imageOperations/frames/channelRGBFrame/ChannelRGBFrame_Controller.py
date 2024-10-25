@@ -5,6 +5,28 @@ from ........shared.components.labelThreeCheckboxFrame.components.Checkbox_Compo
 
 
 class ChannelRGBFrameController:
+  """
+  Controller class for managing the RGB channel frame in the application.
+  Attributes:
+    resize_timer (threading.Timer): Timer to handle resize events.
+    parent_controller (object): Reference to the parent controller.
+    component (LabelThreeCheckboxFrameComponent): Component for the RGB channel frame.
+    text_label (TextLabelComponent): Label component for the RGB channel title.
+    red_checkbox (CheckboxbuttonComponent): Checkbox component for the red channel.
+    green_checkbox (CheckboxbuttonComponent): Checkbox component for the green channel.
+    blue_checkbox (CheckboxbuttonComponent): Checkbox component for the blue channel.
+  Methods:
+    __init__(parent):
+      Initializes the ChannelRGBFrameController with the given parent controller.
+    create_component():
+      Creates the main component for the RGB channel frame.
+    init_components():
+      Initializes the label and checkbox components for the RGB channels.
+    detect_change():
+      Detects changes in the checkbox states and starts a timer to apply the RGB filter.
+    apply_image_channelRGB():
+      Applies the RGB filter to the image based on the checkbox states.
+  """
 
   def __init__(self, parent) -> None:
     self.resize_timer = None

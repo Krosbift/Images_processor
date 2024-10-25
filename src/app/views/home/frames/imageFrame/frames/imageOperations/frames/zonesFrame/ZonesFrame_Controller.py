@@ -7,6 +7,28 @@ from .components.ZonesDarkRadiobutton_Component import ZonesDarkRadiobuttonCompo
 
 
 class ZonesFrameController:
+  """
+  ZonesFrameController is responsible for managing the state and behavior of the zones frame in the application.
+  Attributes:
+    resize_timer (threading.Timer): Timer to handle delayed execution of image zone application.
+    value (IntVar): Integer variable to store the current value of the zones.
+    parent_controller: Reference to the parent controller.
+    component: Instance of ZonesFrameComponent.
+    zones_normal_radiobutton: Instance of ZonesNormalRadiobuttonComponent.
+    zones_light_radiobutton: Instance of ZonesLightRadiobuttonComponent.
+    zones_dark_radiobutton: Instance of ZonesDarkRadiobuttonComponent.
+  Methods:
+    __init__(parent):
+      Initializes the ZonesFrameController with the given parent controller.
+    create_component():
+      Creates the ZonesFrameComponent instance.
+    init_components():
+      Initializes the radiobutton components for different zones.
+    toggle_state():
+      Toggles the state of the zones frame and applies the image zones after a delay.
+    apply_image_zones(value):
+      Applies the image zones based on the given value and updates the image in the parent controller.
+  """
 
   def __init__(self, parent):
     self.resize_timer = None
