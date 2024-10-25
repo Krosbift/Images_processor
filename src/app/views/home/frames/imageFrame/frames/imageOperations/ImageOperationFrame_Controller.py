@@ -10,6 +10,7 @@ from .frames.zoomFrame.ZoomFrame_Controller import ZoomFrameController
 from .frames.binarizationFrame.BinarizationFrame_Controller import BinarizationFrameController
 from .frames.negativeFrame.NegativeFrame_Controller import NegativeFrameController
 from .frames.mergeImageFrame.MergeImageFrame_Controller import MergeImageFrameController
+from .components.SaveImageButton_Component import SaveImageButtonComponent
 
 
 class ImageOperationFrameController:
@@ -80,6 +81,7 @@ class ImageOperationFrameController:
         "MergeImageFrameController": MergeImageFrameController(self)
       }
     self.show_histogram_button_component = ShowHistogramButtonComponent(self)
+    self.save_image_button_component = SaveImageButtonComponent(self)
 
 
   def view_histogram(self):
@@ -95,3 +97,15 @@ class ImageOperationFrameController:
     """
     self.parent_controller.imageChangeService.view_histogram()
 
+
+  def download_image(self):
+    """
+    Downloads the current image.
+
+    This method calls the `download_image` method of the `imageChangeService`
+    from the parent controller to download the currently selected image.
+
+    Returns:
+      None
+    """
+    self.parent_controller.imageChangeService.save_image()

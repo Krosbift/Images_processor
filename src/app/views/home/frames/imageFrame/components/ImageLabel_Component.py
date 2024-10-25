@@ -84,7 +84,7 @@ class ImageLabelComponent(tk.Label):
     self.place_configure(x=0, y=0, relwidth=0.7, relheight=1, anchor="nw")
     if self.resize_timer is not None:
       self.resize_timer.cancel()
-    self.resize_timer = threading.Timer(0.2, self._resize_image)
+    self.resize_timer = threading.Timer(0.5, self._resize_image)
     self.resize_timer.start()
 
 
@@ -120,6 +120,7 @@ class ImageLabelComponent(tk.Label):
     self.config(image=self.temporal_image)
     self.set_image_service(self.controller.parent_controller.childrenControllers["FilesFrameController"].fileEntryComponent.path_route.get())
     self.controller.init_childControllers()
+    self.controller.imageChangeService.reset_all_values()
     return self.update()
 
 

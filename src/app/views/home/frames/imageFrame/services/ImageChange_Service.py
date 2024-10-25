@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import filedialog
 from PIL import Image
 from ......core.ImageProcessing import ImageProcessing
 from .Image_histograma import show_histogram
@@ -297,4 +299,50 @@ class ImageChangeService:
     if self.image is not None:
       show_histogram(self.apply_filter())
   
-  
+
+  def save_image(self):
+    """
+    Saves the modified image to the specified file path.
+    If no file path is provided, a file dialog will prompt the user to select a location and filename.
+    Args:
+      file_path (str, optional): The path where the image will be saved. Defaults to None.
+    Raises:
+      ValueError: If no modified image is available to save or if no file path is provided by the user.
+    """
+
+    if self.modified_image is not None:
+      root = tk.Tk()
+      root.withdraw()
+      file_path = filedialog.asksaveasfilename(defaultextension=".jpg", filetypes=[("JPEG files", "*.jpg"), ("All files", "*.*")])
+      if file_path:
+        self.modified_image.save(file_path, format='JPEG')
+      else:
+        raise ValueError("No file path provided to save the image.")
+    else:
+      raise ValueError("No modified image to save.")
+
+
+  def reset_all_values(self):
+    """
+    Resets all the attributes to their default values.
+
+    Returns:
+      None
+    """
+    self.modified_image = None
+    self.brightness = 1
+    self.contrast = 1
+    self.rotation = 0
+    self.zones = 0
+    self.channelR = 1
+    self.channelG = 1
+    self.channelB = 1
+    self.channelC = 1
+    self.channelN = 1
+    self.channelY = 1
+    self.zoomX = 0
+    self.zoomY = 0
+    self.zoomFactor = 1
+    self.binarity = False
+    self.negative = False
+    self.transparence = 0.5
