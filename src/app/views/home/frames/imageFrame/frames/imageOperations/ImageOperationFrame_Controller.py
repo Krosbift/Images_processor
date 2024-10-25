@@ -5,6 +5,7 @@ from .frames.rotationFrame.RotationFrame_Controller import RotationFrameControll
 from .frames.zonesFrame.ZonesFrame_Controller import ZonesFrameController
 from .frames.channelRGBFrame.ChannelRGBFrame_Controller import ChannelRGBFrameController
 from .frames.channelCMYFrame.ChannelCMYFrame_Controller import ChannelCMYFrameController
+from .frames.zoomFrame.ZoomFrame_Controller import ZoomFrameController
 
 
 class ImageOperationFrameController:
@@ -29,5 +30,6 @@ class ImageOperationFrameController:
         "ZonesFrameController": ZonesFrameController(self),
         "ChannelRGBFrameController": ChannelRGBFrameController(self),
         "ChannelCMYFrameController": ChannelCMYFrameController(self),
+        "ZoomFrameController": ZoomFrameController(self)
       }
 

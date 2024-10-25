@@ -237,3 +237,39 @@ class ImageProcessing:
     filtered_image = Image.fromarray(rgb_image.astype(np.uint8))
     
     return filtered_image
+
+
+  def zoom_image(self, image, x, y, scale_factor):
+    """
+    Zoom into an image from a specified point (x, y) with a given scale factor.
+    
+    Parameters:
+    image (PIL.Image.Image): The input image.
+    x (int): The x-coordinate of the initial point.
+    y (int): The y-coordinate of the initial point.
+    scale_factor (float): The scale factor for zooming.
+    
+    Returns:
+    PIL.Image.Image: The zoomed image.
+    """
+    if scale_factor == 1 or scale_factor == 1.0 or scale_factor == 0:
+        return image
+
+    image = np.array(image)
+    height, width = image.shape[:2]
+    new_height, new_width = int(height / scale_factor), int(width / scale_factor)
+    
+    # Calculate the cropping box
+    left = int(max(0, x - new_width // 2))
+    right = int(min(width, x + new_width // 2))
+    top = int(max(0, y - new_height // 2))
+    bottom = int(min(height, y + new_height // 2))
+    
+    # Crop the image
+    cropped_image = image[top:bottom, left:right]
+    
+    # Resize the cropped image to the original dimensions
+    zoomed_image = np.array(Image.fromarray(cropped_image).resize((width, height), Image.LANCZOS))
+    
+    return Image.fromarray(zoomed_image)
+
