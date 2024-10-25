@@ -50,7 +50,7 @@ class ZoomFrameController:
     self.zoom_label_factor_component = ZoomRefLabelComponent(self, relx=0.37, rely=0.72, text="Factor: ")
     self.zoom_spinbox_x_component = ZoomSpinboxComponent(self, relx=0.5, rely=0.05, min_value=0, max_value=2000, command=self.new_values, initial_value=0, increment=1)
     self.zoom_spinbox_y_component = ZoomSpinboxComponent(self, relx=0.5, rely=0.42, min_value=0, max_value=2000, command=self.new_values, initial_value=0, increment=1)
-    self.zoom_spinbox_factor_component = ZoomSpinboxComponent(self, relx=0.5, rely=0.72, min_value=0, max_value=10, command=self.new_values, initial_value=1, increment=0.1)
+    self.zoom_spinbox_factor_component = ZoomSpinboxComponent(self, relx=0.5, rely=0.72, min_value=0, max_value=10, command=self.new_values, initial_value=0, increment=0.1)
 
 
   def new_values(self):

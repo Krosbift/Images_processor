@@ -252,7 +252,7 @@ class ImageProcessing:
     Returns:
     PIL.Image.Image: The zoomed image.
     """
-    if scale_factor == 1 or scale_factor == 1.0 or scale_factor == 0:
+    if scale_factor == 0 or scale_factor == 0.0:
         return image
 
     image = np.array(image)

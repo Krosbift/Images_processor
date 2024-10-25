@@ -57,7 +57,7 @@ class ImageChangeService:
     self.channelY = 1
     self.zoomX = 0
     self.zoomY = 0
-    self.zoomFactor = 1
+    self.zoomFactor = 0
     self.binarity = False
     self.negative = False
     self.transparence = 0.5
@@ -342,7 +342,7 @@ class ImageChangeService:
     self.channelY = 1
     self.zoomX = 0
     self.zoomY = 0
-    self.zoomFactor = 1
+    self.zoomFactor = 0
     self.binarity = False
     self.negative = False
     self.transparence = 0.5
