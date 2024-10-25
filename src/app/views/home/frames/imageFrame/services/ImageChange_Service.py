@@ -1,5 +1,6 @@
 from PIL import Image
 from ......core.ImageProcessing import ImageProcessing
+from .Image_histograma import show_histogram
 
 
 class ImageChangeService:
@@ -104,3 +105,9 @@ class ImageChangeService:
     self.negative = True if value == "Negative" else False
     return self.apply_filter()
 
+
+  def view_histogram(self):
+    if self.image is not None:
+      show_histogram(self.apply_filter())
+  
+  

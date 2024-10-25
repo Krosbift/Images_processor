@@ -1,4 +1,5 @@
 from .ImageOperationFrame_Component import ImageOperationFrameComponent
+from .components.ShowHistrogramButton_Component import ShowHistogramButtonComponent
 from .frames.brightnessFrame.BrightnessFrame_Controller import BrightnessFrameController
 from .frames.contrastFrame.ContrastFrame_Controller import ContrastFrameController
 from .frames.rotationFrame.RotationFrame_Controller import RotationFrameController
@@ -36,4 +37,8 @@ class ImageOperationFrameController:
         "BinarizationFrameController": BinarizationFrameController(self),
         "NegativeFrameController": NegativeFrameController(self),
       }
+    self.show_histogram_button_component = ShowHistogramButtonComponent(self)
 
+
+  def view_histogram(self):
+    self.parent_controller.imageChangeService.view_histogram()
