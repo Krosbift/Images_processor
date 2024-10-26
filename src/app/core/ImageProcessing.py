@@ -66,6 +66,91 @@ class ImageProcessing:
     return adjusted_image
   
 
+  def imrotate(self, image, x):
+    """
+    Rota una imagen en escala de grises o en color por un ángulo especificado.
+
+    Parámetros:
+    image (PIL.Image.Image): Imagen representada como un objeto PIL.Image.
+    grados (float): Ángulo de rotación en grados.
+
+    Retorna:
+    PIL.Image.Image: Imagen rotada.
+
+    Ejemplo de uso:
+    >>> from PIL import Image
+    >>> from ImageProcessing import ImageProcessing
+    >>> img = Image.open('path_to_image.jpg')
+    >>> processor = ImageProcessing()
+    >>> rotated_img = processor.imrotate(img, 45)
+    >>> rotated_img.show()
+    """
+    # Convertir la imagen PIL a un arreglo de NumPy
+    grados = float(x)
+    I = np.array(image)
+    
+    # Convertir los grados a radianes
+    theta = -grados * np.pi / 180
+    
+    # Obtener las dimensiones de la imagen original
+    M, N, C = I.shape  # C es el número de canales (3 para RGB)
+    
+    # Centro de la imagen original
+    pc = np.array([N, M, 1]) / 2
+    
+    # Matriz de rotación inversa
+    R = np.array([
+      [np.cos(theta), -np.sin(theta), 0],
+      [np.sin(theta),  np.cos(theta), 0],
+      [0,              0,             1]
+    ])
+    
+    R_inv = np.linalg.inv(R)
+    
+    # Calcular las nuevas dimensiones de la imagen rotada
+    D = np.abs(R)
+    z = np.array([N, M, 1])
+    zp = np.dot(D, z)  # Nuevas dimensiones sin el término homogéneo
+    
+    # Dimensiones de la imagen rotada
+    Np = int(np.ceil(zp[0]))  # Nueva anchura
+    Mp = int(np.ceil(zp[1]))  # Nueva altura
+    
+    # Centro de la imagen rotada
+    pc_p = np.array([Np, Mp, 1]) / 2
+    
+    # Inicializar la nueva imagen rotada
+    I_rotada = np.zeros((Mp, Np, C), dtype=np.uint8)
+    
+    # Ciclos for para recorrer la imagen rotada
+    for xp in range(Np):
+      for yp in range(Mp):  
+        # Coordenadas homogéneas del píxel en la imagen rotada
+        p_p = np.array([xp, yp, 1])
+        
+        # Calcular la posición relativa respecto al centro de la imagen rotada
+        p_p_rel = p_p - pc_p
+        
+        # Aplicar la matriz de rotación inversa a las coordenadas relativas
+        p_rel = np.dot(R_inv, p_p_rel)
+        
+        # Ajustar las coordenadas al centro de la imagen original
+        p = p_rel + pc
+        
+        # Redondear las coordenadas al píxel más cercano
+        x = int(np.round(p[0]))
+        y = int(np.round(p[1]))
+        
+        # Verificar si las coordenadas están dentro de los límites de la imagen original
+        if 0 <= x < N and 0 <= y < M:
+          # Asignar los valores de los píxeles de la imagen original a la imagen rotada
+          I_rotada[yp, xp, :] = I[y, x, :]
+    
+    # Convertir la imagen rotada de vuelta a un objeto PIL.Image
+    return Image.fromarray(I_rotada)
+
+
+
   def rotate_image(self, image, angle):
     """
     Rotate the image by a specified angle.
@@ -289,8 +374,10 @@ class ImageProcessing:
     image = np.array(image)
     
     # Apply threshold to binarize the image
-    binarized_image = (image > threshold) * 255
-    
+    binarized_image = np.where(image > threshold, 255, 0)
+
+    # binarized_image = binarized_image[:, :, 0]
+
     # Convert back to PIL Image
     binarized_image = Image.fromarray(binarized_image.astype(np.uint8))
     
